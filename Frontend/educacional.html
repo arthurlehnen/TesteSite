@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educacional</title>
+    <link rel="stylesheet" href="educacional.css"> <!-- Certifique-se de que o caminho está correto -->
+</head>
+<body>
+    <div class="educational-content">
+        <h2>Recursos Educacionais</h2>
+        <h3>PDFs para Estudo</h3>
+        <ul>
+            <li><a href="Ebook.pdf">Como investir em ações</a></li>
+            <li><a href="Suno.pdf">Como investir em Fundos Imobiliários</a></li>
+            <li><a href="renda_fixa.pdf">Como investir em Renda Fixa</a></li>
+        </ul>
+        <h3>Vídeos de Aprendizado</h3>
+        <ul>
+            <li><a href="https://www.youtube.com/live/m24Q93wYzo4?si=G54DXKF8uHFASli8">Como investir no mercado de ações</a></li>
+            <li><a href="https://www.youtube.com/live/zL15zAurhak?si=sltgICQ4HrOw7ERh">Como investir no mercado de FIIs</a></li>
+            <li><a href="https://youtu.be/aN6I4Qf53Kw?si=X3R_ZPiflRERjzWY">Como investir no mercado de renda fixa</a></li>
+        </ul>
+        <h3>Anote aqui tudo que você ache importante</h3>
+        <textarea id="note-block-1" rows="10" placeholder="Faça suas anotações aqui sobre o que você aprendeu sobre o mercado de ações"></textarea>
+        <button onclick="saveNote(1)">Salvar</button>
+
+        <h3>Anote aqui tudo que você ache importante</h3>
+        <textarea id="note-block-2" rows="10" placeholder="Faça suas anotações aqui sobre o que você aprendeu sobre o mercado de FIIs"></textarea>
+        <button onclick="saveNote(2)">Salvar</button>
+
+        <h3>Anote aqui tudo que você ache importante</h3>
+        <textarea id="note-block-3" rows="10" placeholder="Faça suas anotações aqui sobre o que você aprendeu sobre o mercado de Renda Fixa"></textarea>
+        <button onclick="saveNote(3)">Salvar</button>
+    </div>
+
+    <script>
+        function saveNote(blockNumber) {
+            const noteTextarea = document.getElementById(`note-block-${blockNumber}`);
+            const noteContent = noteTextarea.value;
+
+            if (typeof(Storage) !== "undefined") {
+                localStorage.setItem(`note-${blockNumber}`, noteContent);
+                alert("Nota salva com sucesso!");
+            } else {
+                alert("Desculpe, seu navegador não suporta armazenamento local.");
+            }
+        }
+
+        window.onload = function() {
+            for (let i = 1; i <= 3; i++) {
+                const savedNote = localStorage.getItem(`note-${i}`);
+                if (savedNote) {
+                    document.getElementById(`note-block-${i}`).value = savedNote;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

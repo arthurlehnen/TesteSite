@@ -1,0 +1,83 @@
+/* Estilo geral da página */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #121212;
+    color: #fff;
+}
+
+/* Estilo do cabeçalho */
+header {
+    text-align: center;
+    padding: 2rem;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #1e90ff; /* Azul */
+}
+
+/* Estilo do conteúdo educacional */
+.educational-content {
+    text-align: center;
+    padding: 2rem;
+    background-color: #1e1e1e; /* Cinza escuro */
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.educational-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilo dos recursos educacionais (PDFs e vídeos) */
+.educational-content h3 {
+    font-size: 1.6rem;
+    margin-top: 1.5rem;
+    color: #ffffff; /* Branco */
+}
+
+.educational-content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.educational-content li {
+    margin-top: 1rem;
+}
+
+.educational-content a {
+    color: #1e90ff; /* Azul */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.educational-content a:hover {
+    color: #005cbf; /* Azul mais escuro */
+}
+
+/* Estilo do bloco de notas */
+#note-block-1,
+#note-block-2,
+#note-block-3 {
+    width: 100%;
+    padding: 10px;
+    margin-top: 1.5rem;
+    background-color: #333; /* Cinza mais claro */
+    border: 1px solid #1e90ff; /* Borda azul */
+    border-radius: 5px;
+    color: #ddd; /* Texto em um tom mais suave de branco */
+    font-size: 16px;
+    resize: none;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}

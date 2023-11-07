@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #121212;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Barra branca na parte superior com mais altura */
+        .top-bar {
+            background-color: white;
+            height: 70px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* Estilo personalizado para o logotipo "BolsaAqui" */
+        .logo {
+            position: absolute;
+            top: 25px; /* Ajuste a posição vertical para centralizar a barra */
+            left: 20px;
+            color: black; /* Cor do texto preto */
+            font-size: 32px;
+            font-weight: bold;
+            font-family: Arial, sans-serif; /* Usando a fonte Arial */
+        }
+
+        .signup-container {
+            background-color: #1e1e1e;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .signup-container h2 {
+            color: #fff;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .signup-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #2e2e2e;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .signup-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .signup-button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-to-login-button {
+            margin-top: 10px;
+            color: #007bff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .back-to-login-button:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar"></div> <!-- Barra branca na parte superior -->
+    <div class="logo">BolsaAqui</div> <!-- Logotipo "BolsaAqui" estilizado com texto preto -->
+    <div class="signup-container">
+        <h2>Cadastro</h2>
+        <form id="form-cadastro" action="processar_cadastro.php" method="post">
+            <input class="signup-input" type="text" for="username" placeholder="Nome de Usuário" required>
+            <input class="signup-input" type="password" for="password" placeholder="Senha" required>
+            <input class="signup-input" type="email" for="email" placeholder="Email" required>
+            <input class="signup-input" type="date" for="birthdate" required>
+            <button class="signup-button" type="submit">Cadastrar</button>
+        </form>
+        <div id="result"></div>
+        <div class="back-to-login-button" id="back-to-login-button">Voltar ao Login</div>
+    </div>
+
+    <script>
+        document.getElementById("back-to-login-button").addEventListener("click", function() {
+            window.location.href = "login.html"; // Redirecionar de volta para a página de login
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginForm = document.getElementById('form-cadastro');
+            const resultDiv = document.getElementById('result');
+            
+            console.log(loginForm)
+
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+        
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+        
+                // Aqui você faria uma solicitação POST para a API de autenticação
+                // Substitua a URL abaixo pela URL real da API de autenticação
+                const apiUrl = 'http://localhost:3008/user/create';
+        
+                const data = {
+                    username: username,
+                    password: password
+                };
+        
+                fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (response.sucess) {
+                        // Autenticação bem-sucedida
+                        resultDiv.textContent = 'Login bem-sucedido!';
+                        // Redirecionar para a página desejada
+                        window.location.href = 'login.html'; // Substitua 'dashboard.html' pela URL da página desejada
+                    } else {
+                        // Autenticação falhou
+                        resultDiv.textContent = 'Falha na autenticação. Verifique suas credenciais.';
+                    }
+                })
+                .catch(error => {
+                    // Erro na solicitação
+                    resultDiv.textContent = 'Erro na solicitação. Tente novamente mais tarde.';
+                });
+            });
+        });
+    </script>
+
+
+</body>
+</html>
